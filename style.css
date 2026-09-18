@@ -122,10 +122,10 @@ h3, .h3 { font-size: clamp(22px, 2vw, 28px); line-height: 1.1; }
 .lead { font-size: clamp(17px, 1.45vw, 20px); color: var(--encre-2); max-width: 60ch; }
 
 /* Hero + sceau */
-.hero { grid-column: span 8; justify-content: space-between; gap: 28px; padding-top: clamp(36px, 5vw, 64px); min-height: min(640px, 78svh); }
+.hero { grid-column: span 8; justify-content: space-between; gap: 28px; padding-top: clamp(36px, 5vw, 64px); min-height: min(560px, 70svh); }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; }
 .sceau { grid-column: span 4; justify-content: space-between; }
-.sceau-titre { font-size: clamp(30px, 3vw, 44px); line-height: 1.04; }
+.sceau-titre { font-size: clamp(28px, 2.6vw, 38px); line-height: 1.04; }
 .coches { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
 .coches li { display: flex; align-items: center; gap: 12px; font-size: 17px; }
 .coches li::before {
@@ -134,32 +134,15 @@ h3, .h3 { font-size: clamp(22px, 2vw, 28px); line-height: 1.1; }
 }
 .sceau-pied { font-size: 17px; color: rgba(255,255,255,.72); border-top: 1px solid rgba(255,255,255,.18); padding-top: 18px; }
 
-/* Piliers */
-.pilier { grid-column: span 4; min-height: 240px; justify-content: space-between; }
-.pilier p { color: var(--encre-2); }
-
-/* Constat + proposition */
-.constat { grid-column: span 7; justify-content: space-between; }
-.constat p { font-size: clamp(16px, 1.3vw, 19px); color: var(--encre-2); max-width: 58ch; }
-.proposition { grid-column: span 5; justify-content: space-between; background: var(--violet); }
-.proposition .kicker { color: rgba(17,17,17,.6); }
-.grand { font-size: clamp(26px, 2.6vw, 38px); line-height: 1.1; }
-.proposition p:last-child { font-size: 17px; }
-
-/* Indépendance */
-.independance { grid-column: span 12; gap: clamp(28px, 4vw, 48px); }
-.independance-tete { display: flex; flex-direction: column; gap: 18px; }
-.independance-tete h2 { max-width: 30ch; }
-.garanties { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap); }
-.garantie { background: rgba(255,255,255,.07); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 12px; }
-.garantie h3 { font-size: 21px; }
-.garantie p { color: rgba(255,255,255,.72); font-size: 15px; }
-.garantie-num { width: 32px; height: 32px; border-radius: 50%; background: var(--violet); color: var(--encre); display: grid; place-items: center; font-weight: 600; font-size: 14px; }
+/* Problème + rôle */
+.probleme { grid-column: span 7; }
+.probleme p { font-size: clamp(16px, 1.3vw, 19px); color: var(--encre-2); max-width: 56ch; }
+.role { grid-column: span 5; background: var(--violet); justify-content: space-between; }
+.role .kicker { color: rgba(17,17,17,.6); }
+.role p { font-size: 17px; }
 
 /* Démarche */
 .demarche { grid-column: span 12; gap: 28px; }
-.demarche-tete { display: flex; flex-direction: column; gap: 18px; }
-.demarche-tete h2 { max-width: 22ch; }
 .metre {
   position: relative; height: 56px; border-radius: 14px; overflow: hidden;
   display: grid; grid-template-columns: repeat(4, 1fr);
@@ -176,19 +159,19 @@ h3, .h3 { font-size: clamp(22px, 2vw, 28px); line-height: 1.1; }
 .metre span { position: relative; border-left: 2px solid var(--encre); font: 600 12px/1 ui-monospace, 'SF Mono', Menlo, monospace; padding: 0 0 8px 8px; display: flex; align-items: end; }
 .metre span:first-child { border-left: 0; }
 .etapes { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap); }
-.etape { background: var(--beige); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 12px; min-height: 220px; }
+.etape { background: var(--beige); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 10px; }
 .etape p { color: var(--encre-2); font-size: 15px; }
 
-/* Domaines + à propos */
-.domaines { grid-column: span 6; }
-.chips { list-style: none; margin: auto 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
-.chips li { background: var(--blanc); border-radius: 999px; padding: 10px 16px; font-size: 15px; font-weight: 500; }
-.apropos { grid-column: span 6; }
-.apropos blockquote { font-size: clamp(22px, 2.1vw, 30px); line-height: 1.18; margin: 0; }
-.apropos p:last-child { color: var(--encre-2); }
+/* Chips domaines */
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.chips li { background: var(--beige); border-radius: 999px; padding: 10px 16px; font-size: 15px; font-weight: 500; }
+
+/* Qui sommes-nous */
+.nous { grid-column: span 5; }
+.nous p { color: var(--encre-2); }
 
 /* FAQ */
-.faq { grid-column: span 12; gap: 0; }
+.faq { grid-column: span 7; gap: 0; }
 .faq .kicker { margin-bottom: 12px; }
 .faq details { border-top: 1px solid var(--filet); }
 .faq details:last-child { border-bottom: 1px solid var(--filet); }
@@ -210,16 +193,7 @@ h3, .h3 { font-size: clamp(22px, 2vw, 28px); line-height: 1.1; }
 .contact-form h2 { font-size: clamp(32px, 3.6vw, 52px); }
 .contact-intro { color: var(--encre-2); max-width: 52ch; }
 
-.progression { list-style: none; margin: 8px 0 6px; padding: 0; display: flex; gap: 8px; flex-wrap: wrap; }
-.progression li { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px 6px 6px; border-radius: 999px; background: rgba(17,17,17,.05); font-size: 14px; color: var(--encre-3); font-weight: 500; }
-.progression span { width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; background: var(--blanc); font-size: 12px; font-weight: 600; }
-.progression li.actif { background: var(--encre); color: var(--blanc); }
-.progression li.actif span { background: var(--violet); color: var(--encre); }
-.progression li.fait { color: var(--encre); }
-.progression li.fait span { background: var(--violet); }
-
 #lead { display: flex; flex-direction: column; gap: 22px; }
-.etape-form { display: flex; flex-direction: column; gap: 22px; }
 fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 legend, .champ label { font-size: 14px; font-weight: 600; margin-bottom: 10px; padding: 0; display: block; }
 legend em, .champ label em, .accord em { color: var(--bleu); font-style: normal; }
@@ -252,6 +226,10 @@ legend em, .champ label em, .accord em { color: var(--bleu); font-style: normal;
 .accord { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--encre-2); cursor: pointer; border: 1.5px solid transparent; border-radius: 12px; padding: 4px; }
 .accord input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--encre); flex: 0 0 auto; }
 .piege { position: absolute; left: -9999px; width: 1px; height: 1px; }
+.facultatif { font-weight: 400; color: var(--encre-3); margin-left: 6px; }
+.champ-demi { max-width: calc(50% - 7px); }
+.mention { font-size: 13px; color: var(--encre-3); max-width: 32ch; }
+.form-actions { align-items: center; gap: 16px 20px; }
 .erreur { color: #C4152E; font-size: 14px; font-weight: 500; min-height: 0; }
 .erreur:empty { display: none; }
 .form-actions { display: flex; gap: 10px; flex-wrap: wrap; }
@@ -266,11 +244,10 @@ legend em, .champ label em, .accord em { color: var(--bleu); font-style: normal;
 .suite li { counter-increment: s; position: relative; padding-left: 50px; min-height: 32px; color: rgba(255,255,255,.72); font-size: 16px; }
 .suite li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--violet); color: var(--encre); display: grid; place-items: center; font-weight: 600; font-size: 14px; }
 .suite strong { display: block; margin-bottom: 2px; color: var(--blanc); font-size: 17px; }
-.coordonnees { display: flex; flex-direction: column; gap: 10px; }
+.coordonnees { display: flex; flex-direction: column; gap: 10px; margin-top: auto; }
 .coord-lien { color: var(--blanc); text-decoration: none; font-family: var(--titres); font-weight: 500; font-size: clamp(19px, 1.7vw, 24px); letter-spacing: -0.01em; width: fit-content; border-bottom: 1.5px solid rgba(255,255,255,.35); padding-bottom: 3px; transition: color .2s, border-color .2s; overflow-wrap: anywhere; }
 .coord-lien:hover { color: var(--violet); border-color: var(--violet); }
 .coordonnees p { color: rgba(255,255,255,.6); font-size: 15px; margin-top: 6px; }
-.rassurance { margin-top: auto; background: rgba(183,178,255,.14); border-radius: 16px; padding: 16px 18px; font-size: 15px; color: rgba(255,255,255,.85); }
 
 /* Pied */
 .pied {
@@ -282,10 +259,10 @@ legend em, .champ label em, .accord em { color: var(--bleu); font-style: normal;
 
 /* ---------- Responsive ---------- */
 @media (max-width: 1080px) {
-  .garanties, .etapes { grid-template-columns: repeat(2, 1fr); }
+  .etapes { grid-template-columns: repeat(2, 1fr); }
   .hero { grid-column: span 12; min-height: 0; }
   .sceau { grid-column: span 12; }
-  .constat, .proposition { grid-column: span 12; }
+  .probleme, .role, .nous, .faq { grid-column: span 12; }
   .contact { grid-template-columns: 1fr; }
 }
 @media (max-width: 760px) {
@@ -293,9 +270,8 @@ legend em, .champ label em, .accord em { color: var(--bleu); font-style: normal;
   .nav { padding-left: 16px; }
   .nav-liens { display: none; }
   .nav-marque span:last-child { font-size: 15px; }
-  .pilier, .domaines, .apropos { grid-column: span 12; min-height: 0; }
-  .garanties, .etapes { grid-template-columns: 1fr; }
-  .etape { min-height: 0; }
+  .etapes { grid-template-columns: 1fr; }
+  .champ-demi { max-width: none; }
   .rangee { grid-template-columns: 1fr; }
   .contact-infos { border-radius: 28px; }
   .faq details p { padding-right: 0; }

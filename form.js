@@ -5,6 +5,18 @@
    prête à coller dans un tableur ou un CRM. */
 (function () {
   var DESTINATAIRE = 'hervepeitrequin@gmail.com';
+  // Les valeurs des cases restent en français dans toutes les langues :
+  // l'e-mail et la ligne CRM sont donc homogènes, seule l'interface change.
+  var LANGUE = (document.documentElement.lang || 'fr').slice(0, 2);
+  var T = {
+    fr: { manque: 'Il manque : ', envoi: 'Envoi en cours… ', bouton: 'Envoyer ma demande ',
+          echec: 'L’envoi n’a pas abouti. <a href="{lien}">Envoyez votre demande par e-mail</a>, elle est déjà remplie.' },
+    de: { manque: 'Es fehlt: ', envoi: 'Wird gesendet… ', bouton: 'Anfrage senden ',
+          echec: 'Das Senden hat nicht geklappt. <a href="{lien}">Senden Sie Ihre Anfrage per E-Mail</a>, sie ist bereits ausgefüllt.' },
+    en: { manque: 'Missing: ', envoi: 'Sending… ', bouton: 'Send my request ',
+          echec: 'Sending failed. <a href="{lien}">Send your request by email</a>, it is already filled in.' }
+  };
+  T = T[LANGUE] || T.fr;
   var ENDPOINT = 'https://formsubmit.co/ajax/' + DESTINATAIRE;
 
   var form = document.getElementById('lead');
@@ -43,7 +55,9 @@
     });
 
     if (manque.length) {
-      erreur.textContent = 'Il manque : ' + manque.join(', ').toLowerCase().replace(/ \?/g, '') + '.';
+      var liste = manque.join(', ').replace(/\s*\?/g, '');
+      // Majuscules des noms gardées en allemand
+      erreur.textContent = T.manque + (LANGUE === 'de' ? liste : liste.toLowerCase()) + '.';
       var premier = form.querySelector('.invalide input, input.invalide');
       if (premier) premier.focus();
       return false;
@@ -69,15 +83,16 @@
     };
     var priorite = d.echeance === 'Plus tard' ? 'tiède' : 'chaud';
     var date = new Date().toLocaleString('fr-CH', { dateStyle: 'short', timeStyle: 'short' });
-    var colonnes = [date, priorite, d.nom, d.email, d.telephone, d.projet, d.echeance,
+    var colonnes = [date, priorite, LANGUE.toUpperCase(), d.nom, d.email, d.telephone, d.projet, d.echeance,
       d.preoccupation, d.message.replace(/\s+/g, ' ')];
 
     var charge = {
-      _subject: '[Lead ' + priorite + '] ' + d.projet + ' · ' + d.echeance + ' · ' + d.preoccupation + ' · ' + d.nom,
+      _subject: '[Lead ' + priorite + (LANGUE !== 'fr' ? ' · ' + LANGUE.toUpperCase() : '') + '] ' + d.projet + ' · ' + d.echeance + ' · ' + d.preoccupation + ' · ' + d.nom,
       _template: 'table',
       _captcha: 'false',
       _replyto: d.email,
       'Priorité': priorite,
+      'Langue du visiteur': LANGUE.toUpperCase(),
       'Nom': d.nom, 'E-mail': d.email, 'Téléphone': d.telephone || '—',
       'Projet': d.projet, 'Échéance des choix': d.echeance,
       'Préoccupations': d.preoccupation, 'Message': d.message || '—',
@@ -85,7 +100,7 @@
     };
 
     bouton.disabled = true;
-    bouton.firstChild.textContent = 'Envoi en cours… ';
+    bouton.firstChild.textContent = T.envoi;
 
     fetch(ENDPOINT, {
       method: 'POST',
@@ -104,11 +119,10 @@
         // Secours : le visiteur envoie le même contenu depuis sa messagerie
         var corps = Object.keys(charge).filter(function (k) { return k.charAt(0) !== '_' && k.indexOf('Ligne CRM') !== 0; })
           .map(function (k) { return k + ' : ' + charge[k]; }).join('\n');
-        erreur.innerHTML = 'L’envoi n’a pas abouti. <a href="mailto:' + DESTINATAIRE + '?subject=' +
-          encodeURIComponent(charge._subject) + '&body=' + encodeURIComponent(corps) +
-          '">Envoyez votre demande par e-mail</a>, elle est déjà remplie.';
+        erreur.innerHTML = T.echec.replace('{lien}', 'mailto:' + DESTINATAIRE + '?subject=' +
+          encodeURIComponent(charge._subject) + '&body=' + encodeURIComponent(corps));
         bouton.disabled = false;
-        bouton.firstChild.textContent = 'Envoyer ma demande ';
+        bouton.firstChild.textContent = T.bouton;
       });
   });
 })();

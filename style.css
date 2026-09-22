@@ -92,6 +92,19 @@ strong { font-weight: 600; color: var(--encre); }
 .nav-liens a { color: var(--encre); text-decoration: none; font-size: 14px; font-weight: 500; padding: 10px 14px; border-radius: 999px; transition: background .2s, color .2s; }
 .nav-liens a:hover { background: var(--bleu); color: var(--blanc); }
 
+/* Sélecteur de langue : la langue affichée en bleu Klein plein */
+.nav-droite { display: flex; align-items: center; gap: 10px; }
+.langues { display: flex; gap: 2px; padding: 3px; border-radius: 999px; background: rgba(17,17,17,.05); }
+.langues a {
+  color: var(--encre-2); text-decoration: none; font-size: 13px; font-weight: 600; letter-spacing: .04em;
+  padding: 8px 11px; border-radius: 999px; line-height: 1; transition: background .2s, color .2s;
+}
+.langues a:hover { color: var(--bleu); }
+.langues a[aria-current="page"] { background: var(--bleu); color: var(--blanc); }
+.pied .langues { background: transparent; padding: 0; gap: 6px; }
+.pied .langues a { font-size: 13px; letter-spacing: 0; font-weight: 500; padding: 7px 12px; border: 1px solid var(--filet); }
+.pied .langues a[aria-current="page"] { border-color: var(--bleu); }
+
 /* ---------- Grille bento ---------- */
 .grille {
   width: min(1280px, calc(100% - 32px));
@@ -253,7 +266,7 @@ legend em, .champ label em, .accord em { color: var(--bleu); font-style: normal;
 .pied {
   width: min(1280px, calc(100% - 32px));
   margin: 0 auto; padding: 28px 4px 36px;
-  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;
   font-size: 13px; color: var(--encre-3);
 }
 
@@ -277,9 +290,9 @@ legend em, .champ label em, .accord em { color: var(--bleu); font-style: normal;
   .faq details p { padding-right: 0; }
   .metre span { font-size: 11px; }
 }
-@media (max-width: 380px) {
-  .nav .btn-petit { padding: 10px 14px; font-size: 13px; }
-  .nav-marque span:last-child { display: none; }
+@media (max-width: 520px) {
+  .nav .btn-petit { display: none; }
+  .pied { flex-direction: column; align-items: flex-start; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
